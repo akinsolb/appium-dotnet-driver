@@ -202,7 +202,12 @@ namespace OpenQA.Selenium.Appium.Android
 
         #endregion
 
-        #region Device Setting
+        #region Device System
+
+        /// <summary>
+        /// Open the notifications 
+        /// </summary>
+        public void OpenNotifications() => AndroidCommandExecutionHelper.OpenNotifications(this);
 
         public IDictionary<string, object> GetSystemBars() => AndroidCommandExecutionHelper.GetSystemBars(this);
 
