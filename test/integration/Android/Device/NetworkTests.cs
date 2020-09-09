@@ -66,5 +66,20 @@ namespace Appium.Net.Integration.Tests.Android.Device
             var androidDriver = (AndroidDriver<IWebElement>)_driver;
             Assert.That(androidDriver.GetDisplayDensity, Does.Not.EqualTo(0));
         }
+
+        [Test]
+        public void CanSetGsmSignalStrengthTest()
+        {
+            var androidDriver = (AndroidDriver<IWebElement>)_driver;
+
+            Assert.Multiple(() =>
+            {
+                Assert.DoesNotThrow(() => androidDriver.SetGsmSignalStrength(GsmSignalStrength.NoneOrUnknown));
+                Assert.DoesNotThrow(() => androidDriver.SetGsmSignalStrength(GsmSignalStrength.Poor));
+                Assert.DoesNotThrow(() => androidDriver.SetGsmSignalStrength(GsmSignalStrength.Good));
+                Assert.DoesNotThrow(() => androidDriver.SetGsmSignalStrength(GsmSignalStrength.Moderate));
+                Assert.DoesNotThrow(() => androidDriver.SetGsmSignalStrength(GsmSignalStrength.Great));
+            });
+        }
     }
 }

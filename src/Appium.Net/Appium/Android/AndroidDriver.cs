@@ -213,6 +213,9 @@ namespace OpenQA.Selenium.Appium.Android
 
         public float GetDisplayDensity() => AndroidCommandExecutionHelper.GetDisplayDensity(this);
 
+        public void SetGsmSignalStrength(GsmSignalStrength gsmSignalStrength)
+            => AndroidCommandExecutionHelper.SetGsmStrength(this, gsmSignalStrength);
+
         #endregion
 
         /// <summary>
