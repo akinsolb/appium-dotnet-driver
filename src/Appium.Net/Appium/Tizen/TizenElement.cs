@@ -18,7 +18,7 @@ using System.Collections.Generic;
 
 namespace OpenQA.Selenium.Appium.Tizen
 {
-    public class TizenElement : AppiumWebElement, IFindByTizenUIAutomation<AppiumWebElement>
+    public class TizenElement : AppiumElement<TizenElement>, IFindByTizenUIAutomation<TizenElement>
     {
         /// <summary>
         /// Initializes a new instance of the TizenElement class.
@@ -36,10 +36,10 @@ namespace OpenQA.Selenium.Appium.Tizen
 
         #region IFindByTizenUIAutomation Members
 
-        public AppiumWebElement FindElementByTizenUIAutomation(string selector) =>
+        public TizenElement FindElementByTizenUIAutomation(string selector) =>
             FindElement(MobileSelector.TizenUIAutomation, selector);
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByTizenUIAutomation(string selector) =>
+        public IReadOnlyCollection<TizenElement> FindElementsByTizenUIAutomation(string selector) =>
             FindElements(MobileSelector.TizenUIAutomation, selector);
 
         #endregion IFindByTizenUIAutomation Members

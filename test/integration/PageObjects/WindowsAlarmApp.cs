@@ -7,41 +7,42 @@ using SeleniumExtras.PageObjects;
 using System;
 using System.Globalization;
 using System.Linq;
+using OpenQA.Selenium.Appium.Windows;
 
 namespace Appium.Net.Integration.Tests.PageObjects
 {
     public class WindowsAlarmApp
     {
         [FindsByWindowsAutomation(Accessibility = "AlarmButton")]
-        private IMobileElement<AppiumWebElement> _alarmTab;
+        private IMobileElement<AppiumElement<WindowsElement>> _alarmTab;
 
         [FindsByWindowsAutomation(Accessibility = "ClockButton")]
-        private IMobileElement<AppiumWebElement> _clockTab;
+        private IMobileElement<AppiumElement<WindowsElement>> _clockTab;
 
         [FindsByWindowsAutomation(Accessibility = "WorldClockItemGrid")]
-        private IMobileElement<AppiumWebElement> _worldClock;
+        private IMobileElement<AppiumElement<WindowsElement>> _worldClock;
 
         [FindsByWindowsAutomation(Accessibility = "AddAlarmButton")]
-        private IMobileElement<AppiumWebElement> _addAlarmButton;
+        private IMobileElement<AppiumElement<WindowsElement>> _addAlarmButton;
 
         [FindsByWindowsAutomation(Accessibility = "AlarmNameTextBox")]
-        private IMobileElement<AppiumWebElement> _alarmNameTextBox;
+        private IMobileElement<AppiumElement<WindowsElement>> _alarmNameTextBox;
 
         [FindsByWindowsAutomation(Accessibility = "PeriodLoopingSelector")]
-        private IMobileElement<AppiumWebElement> _periodSelector;
+        private IMobileElement<AppiumElement<WindowsElement>> _periodSelector;
 
         [FindsByWindowsAutomation(Accessibility = "HourLoopingSelector")]
-        private IMobileElement<AppiumWebElement> _hourSelector;
+        private IMobileElement<AppiumElement<WindowsElement>> _hourSelector;
 
         [FindsByWindowsAutomation(Accessibility = "MinuteLoopingSelector")]
-        private IMobileElement<AppiumWebElement> _minuteSelector;
+        private IMobileElement<AppiumElement<WindowsElement>> _minuteSelector;
 
         [FindsByWindowsAutomation(Accessibility = "AlarmSaveButton")]
-        private IMobileElement<AppiumWebElement> _saveButton;
+        private IMobileElement<AppiumElement<WindowsElement>> _saveButton;
 
-        private AppiumDriver<AppiumWebElement> _driver;
+        private AppiumDriver<AppiumElement<WindowsElement>> _driver;
 
-        public WindowsAlarmApp(AppiumDriver<AppiumWebElement> driver, TimeOutDuration timeout)
+        public WindowsAlarmApp(AppiumDriver<AppiumElement<WindowsElement>> driver, TimeOutDuration timeout)
         {
             _driver = driver;
 

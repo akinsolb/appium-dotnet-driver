@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace OpenQA.Selenium.Appium.Windows
 {
-    public class WindowsElement : AppiumWebElement, IFindByWindowsUIAutomation<AppiumWebElement>
+    public class WindowsElement : AppiumElement<WindowsElement>, IFindByWindowsUIAutomation<WindowsElement>
     {
         public WindowsElement(RemoteWebDriver parent, string id)
             : base(parent, id)
@@ -28,10 +28,10 @@ namespace OpenQA.Selenium.Appium.Windows
 
         #region IFindByWindowsUIAutomation Members
 
-        public AppiumWebElement FindElementByWindowsUIAutomation(string selector) =>
-            FindElement(MobileSelector.WindowsUIAutomation, selector);
+        public WindowsElement FindElementByWindowsUIAutomation(string selector) =>
+            FindElement(MobileSelector.WindowsUIAutomation, selector) as WindowsElement;
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByWindowsUIAutomation(string selector) =>
+        public IReadOnlyCollection<WindowsElement> FindElementsByWindowsUIAutomation(string selector) =>
             FindElements(MobileSelector.WindowsUIAutomation, selector);
 
         #endregion IFindByWindowsUIAutomation Members

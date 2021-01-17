@@ -40,16 +40,15 @@ namespace OpenQA.Selenium.Appium
     /// }
     /// </code>
     /// </example>
-    public abstract class AppiumWebElement : RemoteWebElement,
-        IMobileElement<AppiumWebElement>, IWebElementCached,
-        IFindsById, IFindsByClassName, IFindsByName, IFindsByTagName
+    public abstract class AppiumElement<W> : RemoteWebElement, IWebElementCached,
+        IFindsById, IFindsByClassName, IFindsByName, IFindsByTagName, IMobileElement<W> where W : IWebElement
     {
         /// <summary>
         /// Initializes a new instance of the AppiumWebElement class.
         /// </summary>
         /// <param name="parent">Driver in use.</param>
         /// <param name="id">ID of the element.</param>
-        public AppiumWebElement(RemoteWebDriver parent, string id)
+        public AppiumElement(RemoteWebDriver parent, string id)
             : base(parent, id)
         {
         }
@@ -237,10 +236,10 @@ namespace OpenQA.Selenium.Appium
 
         #region IFindByAccessibilityId Members
 
-        public AppiumWebElement FindElementByAccessibilityId(string selector) =>
+        public W FindElementByAccessibilityId(string selector) =>
             FindElement(MobileSelector.Accessibility, selector);
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByAccessibilityId(string selector) =>
+        public IReadOnlyCollection<W> FindElementsByAccessibilityId(string selector) =>
             ConvertToExtendedWebElementCollection(FindElements(MobileSelector.Accessibility, selector));
 
         #endregion IFindByAccessibilityId Members
@@ -250,20 +249,20 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="by">Mechanism to find element</param>
         /// <returns>first element found</returns>
-        public new AppiumWebElement FindElement(By by) => (AppiumWebElement) base.FindElement(by);
+        public new W FindElement(By by) => (W) base.FindElement(by);
 
         /// <summary>
         /// Find the elements on the page by using the <see cref="T:OpenQA.Selenium.By"/> object and returns a ReadonlyCollection of the Elements on the page 
         /// </summary>
         /// <param name="by">Mechanism to find element</param>
         /// <returns>ReadOnlyCollection of elements found</returns
-        public new ReadOnlyCollection<AppiumWebElement> FindElements(By by) =>
+        public new ReadOnlyCollection<W> FindElements(By by) =>
             ConvertToExtendedWebElementCollection(base.FindElements(by));
 
-        public new AppiumWebElement FindElement(string by, string value) =>
-            (AppiumWebElement) base.FindElement(by, value);
+        public new W FindElement(string by, string value) =>
+            (W) base.FindElement(by, value);
 
-        public new IReadOnlyCollection<AppiumWebElement> FindElements(string selector, string value) =>
+        public new IReadOnlyCollection<W> FindElements(string selector, string value) =>
             ConvertToExtendedWebElementCollection(base.FindElements(selector, value));
 
         /// <summary>
@@ -271,15 +270,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="className">CSS class name on the element</param>
         /// <returns>first element found</returns
-        public new AppiumWebElement FindElementByClassName(string className) =>
-            (AppiumWebElement) base.FindElement(MobileSelector.ClassName, className);
+        public new W FindElementByClassName(string className) =>
+            (W) base.FindElement(MobileSelector.ClassName, className);
 
         /// <summary>
         /// Finds a list of elements that match the class name supplied
         /// </summary>
         /// <param name="className">CSS class name on the element</param>
         /// <returns>ReadOnlyCollection of elements found</returns
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsByClassName(string className) =>
+        public new ReadOnlyCollection<W> FindElementsByClassName(string className) =>
             ConvertToExtendedWebElementCollection(base.FindElements(MobileSelector.ClassName, className));
 
         /// <summary>
@@ -287,15 +286,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="id">ID of the element</param>
         /// <returns>First element found</returns>
-        public new AppiumWebElement FindElementById(string id) =>
-            (AppiumWebElement) base.FindElement(MobileSelector.Id, id);
+        public new W FindElementById(string id) =>
+            (W) base.FindElement(MobileSelector.Id, id);
 
         /// <summary>
         /// Finds a list of elements that match the ID supplied
         /// </summary>
         /// <param name="id">ID of the element</param>
         /// <returns>ReadOnlyCollection of elements found</returns>
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsById(string id) =>
+        public new ReadOnlyCollection<W> FindElementsById(string id) =>
             ConvertToExtendedWebElementCollection(base.FindElements(MobileSelector.Id, id));
 
         /// <summary>
@@ -303,15 +302,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="cssSelector">The CSS selector to match</param>
         /// <returns>First element found</returns>
-        public new AppiumWebElement FindElementByCssSelector(string cssSelector) =>
-            (AppiumWebElement) base.FindElementByCssSelector(cssSelector);
+        public new W FindElementByCssSelector(string cssSelector) =>
+            (W) base.FindElementByCssSelector(cssSelector);
 
         /// <summary>
         /// Finds a list of elements that match the CSS selector
         /// </summary>
         /// <param name="cssSelector">The CSS selector to match</param>
         /// <returns>ReadOnlyCollection of elements found</returns>
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsByCssSelector(string cssSelector) =>
+        public new ReadOnlyCollection<W> FindElementsByCssSelector(string cssSelector) =>
             ConvertToExtendedWebElementCollection(base.FindElementsByCssSelector(cssSelector));
 
         /// <summary>
@@ -319,15 +318,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="linkText">Link text of element</param>
         /// <returns>First element found</returns>
-        public new AppiumWebElement FindElementByLinkText(string linkText) =>
-            (AppiumWebElement) base.FindElementByLinkText(linkText);
+        public new W FindElementByLinkText(string linkText) =>
+            (W) base.FindElementByLinkText(linkText);
 
         /// <summary>
         /// Finds a list of elements that match the link text supplied
         /// </summary>
         /// <param name="linkText">Link text of element</param>
         /// <returns>ReadOnlyCollection of elements found</returns>
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsByLinkText(string linkText) =>
+        public new ReadOnlyCollection<W> FindElementsByLinkText(string linkText) =>
             ConvertToExtendedWebElementCollection(base.FindElementsByLinkText(linkText));
 
         /// <summary>
@@ -335,15 +334,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="name">Name of the element on the page</param>
         /// <returns>First element found</returns>
-        public new AppiumWebElement FindElementByName(string name) =>
-            (AppiumWebElement) base.FindElement(MobileSelector.Name, name);
+        public new W FindElementByName(string name) =>
+            (W) base.FindElement(MobileSelector.Name, name);
 
         /// <summary>
         /// Finds a list of elements that match the name supplied
         /// </summary>
         /// <param name="name">Name of the element on the page</param>
         /// <returns>ReadOnlyCollection of elements found</returns>
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsByName(string name) =>
+        public new ReadOnlyCollection<W> FindElementsByName(string name) =>
             ConvertToExtendedWebElementCollection(base.FindElements(MobileSelector.Name, name));
 
         /// <summary>
@@ -351,15 +350,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="partialLinkText">Part of the link text</param>
         /// <returns>First element found</returns>
-        public new AppiumWebElement FindElementByPartialLinkText(string partialLinkText) =>
-            (AppiumWebElement) base.FindElementByPartialLinkText(partialLinkText);
+        public new W FindElementByPartialLinkText(string partialLinkText) =>
+            (W) base.FindElementByPartialLinkText(partialLinkText);
 
         /// <summary>
         /// Finds a list of elements that match the part of the link text supplied
         /// </summary>
         /// <param name="partialLinkText">Part of the link text</param>
         /// <returns>ReadOnlyCollection of elements found</returns>
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsByPartialLinkText(string partialLinkText) =>
+        public new ReadOnlyCollection<W> FindElementsByPartialLinkText(string partialLinkText) =>
             ConvertToExtendedWebElementCollection(base.FindElementsByPartialLinkText(partialLinkText));
 
         /// <summary>
@@ -367,15 +366,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="tagName">DOM tag name of the element being searched</param>
         /// <returns>First element found</returns>
-        public new AppiumWebElement FindElementByTagName(string tagName) =>
-            (AppiumWebElement) base.FindElement(MobileSelector.TagName, tagName);
+        public new W FindElementByTagName(string tagName) =>
+            (W) base.FindElement(MobileSelector.TagName, tagName);
 
         /// <summary>
         /// Finds a list of elements that match the DOM Tag supplied
         /// </summary>
         /// <param name="tagName">DOM tag name of the element being searched</param>
         /// <returns>ReadOnlyCollection of elements found</returns>
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsByTagName(string tagName) =>
+        public new ReadOnlyCollection<W> FindElementsByTagName(string tagName) =>
             ConvertToExtendedWebElementCollection(FindElements(MobileSelector.TagName, tagName));
 
         /// <summary>
@@ -383,15 +382,15 @@ namespace OpenQA.Selenium.Appium
         /// </summary>
         /// <param name="xpath">xpath to the element</param>
         /// <returns>First element found</returns>
-        public new AppiumWebElement FindElementByXPath(string xpath) =>
-            (AppiumWebElement) base.FindElementByXPath(xpath);
+        public new W FindElementByXPath(string xpath) =>
+            (W) base.FindElementByXPath(xpath);
 
         /// <summary>
         /// Finds a list of elements that match the XPath supplied
         /// </summary>
         /// <param name="xpath">xpath to the element</param>
         /// <returns>ReadOnlyCollection of elements found</returns>
-        public new ReadOnlyCollection<AppiumWebElement> FindElementsByXPath(string xpath) =>
+        public new ReadOnlyCollection<W> FindElementsByXPath(string xpath) =>
             ConvertToExtendedWebElementCollection(base.FindElementsByXPath(xpath));
 
         #endregion
@@ -399,12 +398,12 @@ namespace OpenQA.Selenium.Appium
         public void SetImmediateValue(string value) => Execute(AppiumDriverCommand.SetValue,
             new Dictionary<string, object>() {["id"] = Id, ["value"] = value});
 
-        private ReadOnlyCollection<AppiumWebElement> ConvertToExtendedWebElementCollection(IEnumerable list)
+        private ReadOnlyCollection<W> ConvertToExtendedWebElementCollection(IEnumerable list)
         {
-            List<AppiumWebElement> result = new List<AppiumWebElement>();
+            List<W> result = new List<W>();
             foreach (var element in list)
             {
-                result.Add((AppiumWebElement) element);
+                result.Add((W) element);
             }
             return result.AsReadOnly();
         }

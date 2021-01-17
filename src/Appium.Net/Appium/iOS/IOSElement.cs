@@ -19,8 +19,8 @@ using System.Collections.Generic;
 
 namespace OpenQA.Selenium.Appium.iOS
 {
-    public class IOSElement : AppiumWebElement,
-        IFindByIosUIAutomation<AppiumWebElement>
+    public class IOSElement : AppiumElement<IOSElement>,
+        IFindByIosUIAutomation<IOSElement>
     {
         /// <summary>
         /// Initializes a new instance of the IOSElement class.
@@ -35,10 +35,10 @@ namespace OpenQA.Selenium.Appium.iOS
 
         #region IFindByIosUIAutomation Members
 
-        public AppiumWebElement FindElementByIosUIAutomation(string selector) =>
+        public IOSElement FindElementByIosUIAutomation(string selector) =>
             FindElement(MobileSelector.iOSAutomatoion, selector);
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByIosUIAutomation(string selector) =>
+        public IReadOnlyCollection<IOSElement> FindElementsByIosUIAutomation(string selector) =>
             FindElements(MobileSelector.iOSAutomatoion, selector);
 
         #endregion IFindByIosUIAutomation Members

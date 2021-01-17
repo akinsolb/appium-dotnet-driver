@@ -7,7 +7,7 @@ namespace Appium.Net.Integration.Tests.Android
 {
     class IntentAndroidTest
     {
-        private AndroidDriver<AppiumWebElement> _driver;
+        private AndroidDriver<AppiumElement<AndroidElement>> _driver;
 
         [OneTimeSetUp]
         public void BeforeAll()
@@ -16,7 +16,7 @@ namespace Appium.Net.Integration.Tests.Android
                 ? Caps.GetAndroidUIAutomatorCaps(Apps.Get("intentApp"))
                 : Caps.GetAndroidUIAutomatorCaps(Apps.Get("intentApp"));
             var serverUri = Env.ServerIsRemote() ? AppiumServers.RemoteServerUri : AppiumServers.LocalServiceUri;
-            _driver = new AndroidDriver<AppiumWebElement>(serverUri, capabilities, Env.InitTimeoutSec);
+            _driver = new AndroidDriver<AppiumElement<AndroidElement>>(serverUri, capabilities, Env.InitTimeoutSec);
             _driver.Manage().Timeouts().ImplicitWait = Env.ImplicitTimeoutSec;
         }
 

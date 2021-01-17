@@ -20,6 +20,7 @@ using Appium.Net.Integration.Tests.helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.iOS;
 using OpenQA.Selenium.Appium.Windows;
 
 namespace Appium.Net.Integration.Tests.Windows
@@ -106,7 +107,7 @@ namespace Appium.Net.Integration.Tests.Windows
         public string ReadLocalTime()
         {
             var localTimeText = "";
-            AppiumWebElement worldClockPivotItem =
+            AppiumElement<WindowsElement> worldClockPivotItem =
                 AlarmClockSession.FindElementByAccessibilityId("ClockButton");
             if (worldClockPivotItem != null)
             {
@@ -165,7 +166,7 @@ namespace Appium.Net.Integration.Tests.Windows
         {
             try
             {
-                AppiumWebElement newNotification = DesktopSession.FindElementByName("New notification");
+                AppiumElement<WindowsElement> newNotification = DesktopSession.FindElementByName("New notification");
                 Assert.IsTrue(newNotification.FindElementByAccessibilityId("MessageText").Text
                     .Contains("Windows Application Driver Test Alarm"));
                 newNotification.FindElementByName("Dismiss").Click();
@@ -180,7 +181,7 @@ namespace Appium.Net.Integration.Tests.Windows
             // Try to return to main page in case application is started in nested view
             try
             {
-                AppiumWebElement backButton = null;
+                AppiumElement<WindowsElement> backButton = null;
                 do
                 {
                     backButton = AlarmClockSession.FindElementByAccessibilityId("Back");

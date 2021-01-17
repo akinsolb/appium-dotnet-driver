@@ -45,7 +45,7 @@ namespace OpenQA.Selenium.Appium.PageObjects
                     listAvailableElementTypes = new List<Type>();
                     listAvailableElementTypes.Add(typeof(IWebElement));
                     listAvailableElementTypes.Add(typeof(RemoteWebElement));
-                    listAvailableElementTypes.Add(typeof(AppiumWebElement));
+                    listAvailableElementTypes.Add(typeof(AppiumElement<>));
                     listAvailableElementTypes.Add(typeof(AndroidElement));
                     listAvailableElementTypes.Add(typeof(IOSElement));
                     listAvailableElementTypes.Add(typeof(WindowsElement));

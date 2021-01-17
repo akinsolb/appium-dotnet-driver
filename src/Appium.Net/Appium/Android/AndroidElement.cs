@@ -19,7 +19,7 @@ using System.Collections.Generic;
 
 namespace OpenQA.Selenium.Appium.Android
 {
-    public class AndroidElement : AppiumWebElement, IFindByAndroidUIAutomator<AppiumWebElement>, IFindByAndroidDataMatcher<AppiumWebElement>
+    public class AndroidElement : AppiumElement<AndroidElement>, IFindByAndroidUIAutomator<AndroidElement>, IFindByAndroidDataMatcher<AndroidElement>
     {
         /// <summary>
         /// Initializes a new instance of the AndroidElement class.
@@ -33,36 +33,36 @@ namespace OpenQA.Selenium.Appium.Android
 
         #region IFindByAndroidUIAutomator Members
 
-        public AppiumWebElement FindElementByAndroidUIAutomator(string selector) =>
+        public AndroidElement FindElementByAndroidUIAutomator(string selector) =>
             FindElement(MobileSelector.AndroidUIAutomator, selector);
 
-        public AppiumWebElement FindElementByAndroidUIAutomator(IUiAutomatorStatementBuilder selector) =>
+        public AndroidElement FindElementByAndroidUIAutomator(IUiAutomatorStatementBuilder selector) =>
             FindElement(MobileSelector.AndroidUIAutomator, selector.Build());
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByAndroidUIAutomator(string selector) =>
+        public IReadOnlyCollection<AndroidElement> FindElementsByAndroidUIAutomator(string selector) =>
             FindElements(MobileSelector.AndroidUIAutomator, selector);
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByAndroidUIAutomator(IUiAutomatorStatementBuilder selector) => 
+        public IReadOnlyCollection<AndroidElement> FindElementsByAndroidUIAutomator(IUiAutomatorStatementBuilder selector) => 
             FindElements(MobileSelector.AndroidUIAutomator, selector.Build());
 
         #endregion IFindByAndroidUIAutomator Members
 
         #region IFindByAndroidDataMatcher Members
 
-        public AppiumWebElement FindElementByAndroidDataMatcher(string selector) =>
+        public AndroidElement FindElementByAndroidDataMatcher(string selector) =>
             FindElement(MobileSelector.AndroidDataMatcher, selector);
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByAndroidDataMatcher(string selector) =>
+        public IReadOnlyCollection<AndroidElement> FindElementsByAndroidDataMatcher(string selector) =>
             FindElements(MobileSelector.AndroidDataMatcher, selector);
 
         #endregion IFindByAndroidDataMatcher Members
 
         #region IFindByAndroidViewMatcher Members
 
-        public AppiumWebElement FindElementByAndroidViewMatcher(string selector) =>
+        public AndroidElement FindElementByAndroidViewMatcher(string selector) =>
             FindElement(MobileSelector.AndroidViewMatcher, selector);
 
-        public IReadOnlyCollection<AppiumWebElement> FindElementsByAndroidViewMatcher(string selector) =>
+        public IReadOnlyCollection<AndroidElement> FindElementsByAndroidViewMatcher(string selector) =>
             FindElements(MobileSelector.AndroidViewMatcher, selector);
 
         #endregion IFindByAndroidViewMatcher Members

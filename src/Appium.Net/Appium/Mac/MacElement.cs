@@ -16,7 +16,7 @@ using OpenQA.Selenium.Remote;
 
 namespace OpenQA.Selenium.Appium.Mac
 {
-    public class MacElement : AppiumWebElement
+    public class MacElement : AppiumElement<MacElement>
     {
         /// <summary>
         /// Initializes a new instance of the MacElement class.
